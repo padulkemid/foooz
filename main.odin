@@ -1,5 +1,6 @@
 package main
 
+import "core:fmt"
 import rl "vendor:raylib"
 
 WINDOW_TITLE :: "foooz"
@@ -53,6 +54,11 @@ spawn_drawing :: proc(pos: ^Position) {
 
 }
 
+// this procedure will act as logging info between oses
+desktop_info :: proc() {
+	fmt.printf("runs in %v\n", ODIN_OS)
+}
+
 
 game :: proc(pos: ^Position) {
 	controls(pos)
@@ -63,6 +69,8 @@ main :: proc() {
 	// init
 	rl.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE)
 	defer rl.CloseWindow()
+
+  desktop_info()
 
 	// set target
 	rl.SetTargetFPS(FPS)
