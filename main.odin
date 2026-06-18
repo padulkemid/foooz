@@ -59,6 +59,7 @@ main :: proc() {
 	}
 
   projectiles := make([dynamic]Projectile)
+  defer delete(projectiles)
 
 	// set start state
 	state := Game_State {
