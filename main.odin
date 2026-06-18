@@ -3,21 +3,38 @@ package main
 import "core:fmt"
 import rl "vendor:raylib"
 
+// title
 WINDOW_TITLE :: "foooz"
 
+// screen
 FPS :: 60
-
 SCREEN_WIDTH :: 800
 SCREEN_HEIGHT :: 400
+
+// player
 RECT_WIDTH :: 50
 RECT_HEIGHT :: 50
-
 RECT_MOVE_SPEED :: 10
 
+// projectile
+PROJECTILE_WIDTH :: 5
+PROJECTILE_HEIGHT :: 20
+PROJECTILE_SPEED :: 40
 
 Position :: struct {
 	x: i32,
 	y: i32,
+}
+
+Projectile :: struct {
+	pos: Position,
+}
+
+// global state
+Game_State :: struct {
+	player:      Position,
+	projectiles: [dynamic]Projectile,
+  // score: int <- absolutely can implement later
 }
 
 // this procedure will act as logging info between oses
@@ -41,9 +58,17 @@ main :: proc() {
 		y = (SCREEN_HEIGHT / 2) - RECT_HEIGHT,
 	}
 
+  projectiles := make([dynamic]Projectile)
+
+	// set start state
+	state := Game_State {
+		player      = start,
+		projectiles = projectiles,
+	}
+
 	// start game
 	for !rl.WindowShouldClose() {
-		game(&start)
+		game(&state)
 	}
 }
 
