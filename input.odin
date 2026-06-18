@@ -1,6 +1,5 @@
 package main
 
-import "core:fmt"
 import rl "vendor:raylib"
 
 projectile_control :: proc(state: ^Game_State) {
