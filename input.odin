@@ -38,7 +38,7 @@ horizontal_control :: proc(pos: ^Position) {
 	}
 }
 
-controls :: proc(state: ^Game_State) {
+register_input :: proc(state: ^Game_State) {
 	player_pos := &state.player
 	projectile_pos := state.projectiles
 

@@ -3,7 +3,8 @@ package main
 import rl "vendor:raylib"
 
 spawn_drawing :: proc(state: ^Game_State) {
-	INFO :: "WASD to move"
+	MOVT_INFO :: "WASD to move"
+  PROJ_INFO :: "SPACE to shoot"
 	MAKER :: "foooz by padulkemid"
 
 	rl.BeginDrawing()
@@ -19,14 +20,15 @@ spawn_drawing :: proc(state: ^Game_State) {
 	}
 
 
-	rl.DrawText(INFO, 10, 10, 17, rl.BLACK)
-	rl.DrawText(MAKER, 10, 30, 17, rl.BLACK)
+	rl.DrawText(MOVT_INFO, 10, 10, 17, rl.BLACK)
+	rl.DrawText(PROJ_INFO, 10, 30, 17, rl.BLACK)
+	rl.DrawText(MAKER, 10, 50, 17, rl.BLACK)
 
 	rl.EndDrawing()
 }
 
 game :: proc(state: ^Game_State) {
-	controls(state)
+	register_input(state)
 	spawn_drawing(state)
 	projectile_system(state)
 }
